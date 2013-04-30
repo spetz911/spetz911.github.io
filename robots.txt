@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://spetz911.github.io/sitemap.xml 
