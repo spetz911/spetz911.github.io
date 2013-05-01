@@ -9,8 +9,7 @@
   <meta name="author" content="Oleg Baskakov">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="Flying is learning how to throw yourself at the ground and miss.Douglas Adams The Hichhikers Guide to the Galaxy Look at my code: Discover if a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +71,146 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/05/01/test-ruby/">Test Ruby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-01T10:52:00+04:00" pubdate data-updated="true">May 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>Flying is learning how to throw yourself at the ground and miss.</p><footer><strong>Douglas Adams</strong> <cite>The Hichhikers Guide to the Galaxy</cite></footer></blockquote>
+
+
+<p>Look at my code:</p>
+
+<figure class='code'><figcaption><span>Discover if a number is prime</span><a href='http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/'>Source Article</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Fixnum</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">prime?</span>
+</span><span class='line'>    <span class="p">(</span><span class="s1">&#39;1&#39;</span> <span class="o">*</span> <span class="nb">self</span><span class="p">)</span> <span class="o">!~</span> <span class="sr">/^1?$|^(11+?)\1+$/</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>And another</h3>
+
+<figure class='code'><figcaption><span> (test.hs)</span> <a href='/downloads/code/test.hs'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='hs'><span class='line'><span class="cm">{-# LANGUAGE OverloadedStrings #-}</span>
+</span><span class='line'><span class="kr">module</span> <span class="nn">Main</span> <span class="kr">where</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">--import Prelude hiding (id)</span>
+</span><span class='line'><span class="c1">--import Control.Category (id)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Arrow</span> <span class="p">((</span><span class="o">&gt;&gt;&gt;</span><span class="p">),</span> <span class="p">(</span><span class="o">***</span><span class="p">),</span> <span class="nf">arr</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Control.Monad</span> <span class="p">(</span><span class="nf">forM_</span><span class="p">)</span>
+</span><span class='line'><span class="c1">-- import Data.Monoid (mempty, mconcat)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- import System.FilePath</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">import</span> <span class="nn">Hakyll</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+</span><span class='line'><span class="nf">main</span> <span class="ow">=</span> <span class="n">hakyll</span> <span class="o">$</span> <span class="kr">do</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">route</span>   <span class="s">&quot;css/*&quot;</span> <span class="o">$</span> <span class="n">setExtension</span> <span class="s">&quot;css&quot;</span>
+</span><span class='line'>    <span class="n">compile</span> <span class="s">&quot;css/*&quot;</span> <span class="o">$</span> <span class="n">byExtension</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;Not a (S)CSS file&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">[</span> <span class="p">(</span><span class="s">&quot;.css&quot;</span><span class="p">,</span>  <span class="n">compressCssCompiler</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">,</span> <span class="p">(</span><span class="s">&quot;.scss&quot;</span><span class="p">,</span> <span class="n">sass</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">route</span>   <span class="s">&quot;js/**&quot;</span> <span class="n">idRoute</span>
+</span><span class='line'>    <span class="n">compile</span> <span class="s">&quot;js/**&quot;</span> <span class="n">copyFileCompiler</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">route</span>   <span class="s">&quot;img/*&quot;</span> <span class="n">idRoute</span>
+</span><span class='line'>    <span class="n">compile</span> <span class="s">&quot;img/*&quot;</span> <span class="n">copyFileCompiler</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">compile</span> <span class="s">&quot;templates/*&quot;</span> <span class="n">templateCompiler</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">forM_</span> <span class="p">[</span><span class="s">&quot;test.md&quot;</span><span class="p">,</span> <span class="s">&quot;index.md&quot;</span><span class="p">]</span> <span class="o">$</span> <span class="nf">\</span><span class="n">page</span> <span class="ow">-&gt;</span> <span class="kr">do</span>
+</span><span class='line'>        <span class="n">route</span>   <span class="n">page</span> <span class="o">$</span> <span class="n">setExtension</span> <span class="s">&quot;html&quot;</span>
+</span><span class='line'>        <span class="n">compile</span> <span class="n">page</span> <span class="o">$</span> <span class="n">pageCompiler</span>
+</span><span class='line'>            <span class="o">&gt;&gt;&gt;</span> <span class="n">applyTemplateCompiler</span> <span class="s">&quot;templates/default.html&quot;</span>
+</span><span class='line'>            <span class="o">&gt;&gt;&gt;</span> <span class="n">relativizeUrlsCompiler</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">sass</span> <span class="ow">::</span> <span class="kt">Compiler</span> <span class="kt">Resource</span> <span class="kt">String</span>
+</span><span class='line'><span class="nf">sass</span> <span class="ow">=</span> <span class="n">getResourceString</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">unixFilter</span> <span class="s">&quot;sass&quot;</span> <span class="p">[</span><span class="s">&quot;-s&quot;</span><span class="p">,</span> <span class="s">&quot;--scss&quot;</span><span class="p">]</span>
+</span><span class='line'>                         <span class="o">&gt;&gt;&gt;</span> <span class="n">arr</span> <span class="n">compressCss</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/05/01/zombie-ninjas-attack-a-survivors-retrospective/">Zombie Ninjas Attack: A Survivor&#8217;s Retrospective</a></h1>
     
     
@@ -103,6 +242,327 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/26/decorator-for-python3-static-types/">Decorator for Python3 Static Types</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-26T00:00:00+04:00" pubdate data-updated="true">Jul 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<figure class='code'><figcaption><span>Here&#8217;s an example .rvmrc file. </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\
+</span><span class='line'>\<span class="c">#!/usr/bin/env python\</span>
+</span><span class='line'>\<span class="c">#-\*- coding:utf-8 -\*-\</span>
+</span><span class='line'>
+</span><span class='line'>\
+</span><span class='line'>
+</span><span class='line'>\
+</span><span class='line'>
+</span><span class='line'>\
+</span><span class='line'><span class="k">def</span> <span class="nf">accepts</span><span class="p">(</span>\<span class="o">*</span><span class="n">types</span><span class="p">):</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="k">def</span> <span class="nf">check</span>\<span class="n">_accepts</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">print</span><span class="p">(</span><span class="s">&quot;len(types) = &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">types</span><span class="p">))</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">print</span><span class="p">(</span><span class="s">&quot;f.func\_code.co\_argcount = &quot;</span><span class="p">,</span>
+</span><span class='line'><span class="n">f</span><span class="o">.</span>\<span class="n">_</span>\<span class="n">_code</span>\<span class="n">_</span>\<span class="n">_</span><span class="o">.</span><span class="n">co</span>\<span class="n">_argcount</span><span class="p">)</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> \<span class="c"># assert len(types) == f.func\_code.co\_argcount\</span>
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">def</span> <span class="nf">new</span>\<span class="n">_f</span><span class="p">(</span>\<span class="o">*</span><span class="n">args</span><span class="p">,</span> \<span class="o">*</span>\<span class="o">*</span><span class="n">kwds</span><span class="p">):</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> \\\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="s">&quot;arg </span><span class="si">%r</span><span class="s"> does not match </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="n">f</span><span class="p">(</span>\<span class="o">*</span><span class="n">args</span><span class="p">,</span> \<span class="o">*</span>\<span class="o">*</span><span class="n">kwds</span><span class="p">)</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> \<span class="c"># new\_f.func\_name = f.func\_name\</span>
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">new</span>\<span class="n">_f</span><span class="o">.</span>\<span class="n">_</span>\<span class="n">_name</span>\<span class="n">_</span>\<span class="n">_</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span>\<span class="n">_</span>\<span class="n">_name</span>\<span class="n">_</span>\<span class="n">_</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="n">new</span>\<span class="n">_f</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="n">check</span>\<span class="n">_accepts</span>\
+</span><span class='line'>\
+</span><span class='line'><span class="k">def</span> <span class="nf">returns</span><span class="p">(</span><span class="n">rtype</span><span class="p">):</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="k">def</span> <span class="nf">check</span>\<span class="n">_returns</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">def</span> <span class="nf">new</span>\<span class="n">_f</span><span class="p">(</span>\<span class="o">*</span><span class="n">args</span><span class="p">,</span> \<span class="o">*</span>\<span class="o">*</span><span class="n">kwds</span><span class="p">):</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span>\<span class="o">*</span><span class="n">args</span><span class="p">,</span> \<span class="o">*</span>\<span class="o">*</span><span class="n">kwds</span><span class="p">)</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">rtype</span><span class="p">),</span> \\\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="s">&quot;return value </span><span class="si">%r</span><span class="s"> does not match </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="n">rtype</span><span class="p">)</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="n">result</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">new</span>\<span class="n">_f</span><span class="o">.</span>\<span class="n">_</span>\<span class="n">_name</span>\<span class="n">_</span>\<span class="n">_</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span>\<span class="n">_</span>\<span class="n">_name</span>\<span class="n">_</span>\<span class="n">_</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="n">new</span>\<span class="n">_f</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="n">check</span>\<span class="n">_returns</span>\
+</span><span class='line'>\
+</span><span class='line'><span class="nd">@accepts</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="nb">float</span><span class="p">))</span>\
+</span><span class='line'><span class="nd">@returns</span><span class="p">((</span><span class="nb">int</span><span class="p">,</span><span class="nb">float</span><span class="p">))</span>\
+</span><span class='line'><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>\
+</span><span class='line'><span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="n">arg1</span> \<span class="o">*</span> <span class="n">arg2</span>\
+</span><span class='line'>
+</span><span class='line'>\
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/07/ssh-http-virtualbox/">Ssh и Http доступ к VirtualBox</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-07T00:00:00+04:00" pubdate data-updated="true">Jun 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ssh и http доступ к VirtualBox при приспользовании NAT</p>
+
+<p>1 comment so far</p>
+
+<p>Настройка производится с помощью VBoxManage.</p>
+
+<p>VBoxManage &#8211; утилита командной строки, позволяющая вам контролировать</p>
+
+<p>все возможности VirtualBox.</p>
+
+<p>\</p>
+
+<p>&lt;&lt;Особенность>> технологии NAT состоит в том, что гостевая и
+хост-машина</p>
+
+<p>никак не &lt;&lt;видят>> друг друга в IP-сети. Самое простое решение &#8211;
+проброс</p>
+
+<p>(форвард) портов средствами VirtualBox.</p>
+
+<p>Настраиваем при выключенной гостевой машине.</p>
+
+<p>Настраиваем доступ по ssh</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>VBoxManage setextradata <span class="se">\&lt;</span>guestname<span class="se">\&gt;</span>
+</span><span class='line'><span class="s2">&quot;VBoxInternal/Devices/e1000/0/LUN\#0/Config/ssh/HostPort&quot;</span> 2222
+</span><span class='line'>VBoxManage setextradata <span class="se">\&lt;</span>guestname<span class="se">\&gt;</span>
+</span><span class='line'><span class="s2">&quot;VBoxInternal/Devices/e1000/0/LUN\#0/Config/ssh/GuestPort&quot;</span> 22
+</span><span class='line'>VBoxManage setextradata <span class="se">\&lt;</span>guestname<span class="se">\&gt;</span>
+</span><span class='line'><span class="s2">&quot;VBoxInternal/Devices/e1000/0/LUN\#0/Config/ssh/Protocol&quot;</span> TCP
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Доступ к http</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>VBoxManage setextradata <span class="se">\&lt;</span>guestname<span class="se">\&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&quot;VBoxInternal/Devices/e1000/0/LUN\#0/Config/guesthttp/Protocol&quot;</span> TCP
+</span><span class='line'>
+</span><span class='line'>VBoxManage setextradata <span class="se">\&lt;</span>guestname<span class="se">\&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&quot;VBoxInternal/Devices/e1000/0/LUN\#0/Config/guesthttp/GuestPort&quot;</span> 80
+</span><span class='line'>
+</span><span class='line'>VBoxManage setextradata <span class="se">\&lt;</span>guestname<span class="se">\&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&quot;VBoxInternal/Devices/e1000/0/LUN\#0/Config/guesthttp/HostPort&quot;</span> 8080
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Запускаем машину</p>
+
+<p>Проверяем ssh доступ</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ssh localhost -l  -p 2222
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>По http виртуальная машина доступна на 8080м порту</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>http://localhost:8080/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&lt;guestname> &#8211; имя виртуальной машины</p>
+
+<p>&lt;username> &#8211; пользователь виртуальной машины</p>
+
+<h2>Comments</h2>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/07/spin-lock/">Spin Lock</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-07T00:00:00+04:00" pubdate data-updated="true">Jun 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>&#8212; layout: post title: spin_lock date: 2012-06-07 comments: false &#8212;</p>
+
+<h1>Spin Lock</h1>
+
+<p>\
+Alex Krizhanovsky: Ребят, такой код\
+\
+spin_lock(&amp;keepalive_lock);\
+&#8230;..\
+ret = kmem_cache_alloc(session_cache, GFP_ATOMIC|__GFP_ZERO);\
+&#8230;.\
+      if (!login) {\
+                          kmem_cache_free(session_cache, ret);\
+        &#8230;&#8230;&#8230;..\
+      }\
+&#8230;&#8230;\
+spin_unlock(&amp;keepalive_lock);\
+\
+(Олег, spin_lock - это быстрая блокировка, аналог pthread_spin_lock
+(который, кстати в user space использовать не следует),
+kmem_cache_alloc/kmem_cache_free - аллокации/деаллокации памяти)\
+\
+&#8212; очень плох с точки зрения lock contention.\
+\
+Аллокации памяти могут выполнять довольно сложные операции, хоть и не
+всегда. Поэтому:\
+1. аллоцируем ДО лока, проверяем условия под локом и если они не
+выполняются (если это редкий случай) - отпускаем лок и освобождаем
+память\
+2. деаллоцируем память ПОСЛЕ отпускания лока (Юр, это я про
+hps_session_insert_ipv6)\
+\
+Общая идея (на многопроцессорных системах) - лучне лишний раз сделать
+alloc/free без лока, чем меньше аллокаций, но под локом. Пока вы на 2-4
+ядрах - может быть лучше все далать пол локом, если вы на 8-16-32 ядрах
+и выше - объем кода под локом - одно из самых критичных мест\</p>
+
+<h2>Comments</h2>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -116,7 +576,23 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/01/test-ruby/">Test ruby</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/01/zombie-ninjas-attack-a-survivors-retrospective/">Zombie Ninjas Attack: A survivor&#8217;s retrospective</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/decorator-for-python3-static-types/">decorator for python3 static types</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/ssh-http-virtualbox/">ssh и http доступ к VirtualBox</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/spin-lock/">Spin Lock</a>
       </li>
     
   </ul>
